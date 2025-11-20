@@ -1,6 +1,6 @@
-package com.neel.nearbyplaces
+package com.neel.nearbypois
 
-import com.neel.nearbyplaces.api.NearbyPoisApi
+import com.neel.nearbypois.api.NearbyPoisApi
 import com.neel.platform.api.PlatformApi
 import com.neel.shared.model.EngineType
 import com.neel.shared.model.Location
@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
  * The rest of the app only depends on the [NearbyPoisApi] interface,
  *   not on how the algorithm is implemented.
  */
+
 class NearbyPois(
     private val platformApi: PlatformApi,
     private val coroutineScope: CoroutineScope,
@@ -61,6 +62,7 @@ class NearbyPois(
             PoiCategory.GAS_STATION -> filterForGasStations(rawLocationList)
             PoiCategory.SUPERMARKET -> filterForSupermarkets(rawLocationList)
             PoiCategory.PARKING -> filterForParking(rawLocationList)
+            PoiCategory.ALL -> emptyList()
             PoiCategory.UNKNOWN -> emptyList()
         }
     }

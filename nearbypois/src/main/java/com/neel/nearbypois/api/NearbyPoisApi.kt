@@ -1,4 +1,4 @@
-package com.neel.nearbyplaces.api
+package com.neel.nearbypois.api
 
 import com.neel.shared.model.Location
 import com.neel.shared.model.Poi

@@ -27,9 +27,4 @@ interface PlatformApi {
      * Flow of raw vehicle locations.
      */
     fun observeCurrentLocation(): Flow<Location>
-
-    /**
-     * Flow of current POI category for nearby search.
-     */
-    fun observeCurrentNearbyPoiCategory(): Flow<PoiCategory>
 }

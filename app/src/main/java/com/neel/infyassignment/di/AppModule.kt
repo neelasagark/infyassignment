@@ -1,15 +1,15 @@
 package com.neel.infyassignment.di
 
 import android.content.Context
-import com.neel.infyassignment.data.poi.PoiManager
-import com.neel.infyassignment.data.poi.PoiRepository
+import com.neel.infyassignment.data.poi.PoisManager
+import com.neel.infyassignment.data.poi.PoisRepository
 import com.neel.infyassignment.data.storage.HistoricalPoisStorage
 import com.neel.infyassignment.domain.repository.NearbyPoisRepository
 import com.neel.infyassignment.domain.usecase.ClearHistoricalPoisUseCase
 import com.neel.infyassignment.domain.usecase.GetCurrentPoisUseCase
 import com.neel.infyassignment.domain.usecase.GetHistoricalPoisUseCase
-import com.neel.nearbyplaces.NearbyPois
-import com.neel.nearbyplaces.api.NearbyPoisApi
+import com.neel.nearbypois.NearbyPois
+import com.neel.nearbypois.api.NearbyPoisApi
 import com.neel.platform.VehiclePlatform
 import com.neel.platform.api.PlatformApi
 import com.neel.shared.model.Poi
@@ -34,7 +34,6 @@ object AppModule {
     fun provideApplicationScope(): CoroutineScope {
         return CoroutineScope(SupervisorJob() + Dispatchers.Default)
     }
-
 
 
     @Singleton
@@ -64,6 +63,7 @@ object AppModule {
 
     @Singleton
     @Provides
+    @Suppress("UnusedParameter")
     fun provideHistoricalPoisStorage(
         ioDispatcher: CoroutineDispatcher,
     ): HistoricalPoisStorage {
@@ -92,21 +92,21 @@ object AppModule {
         nearbyLocationApi: NearbyPoisApi,
         historicalPoisStorage: HistoricalPoisStorage,
         applicationScope: CoroutineScope,
-    ): PoiManager {
-        return PoiManager(
+    ): PoisManager {
+        return PoisManager(
             platformApi = platformApi,
             nearbyPoisApi = nearbyLocationApi,
-            coroutineScope = applicationScope,
             historicalPoisStorage = historicalPoisStorage,
+            coroutineScope = applicationScope,
         )
     }
 
     @Singleton
     @Provides
     fun provideNearbyPoisRepository(
-        poiManager: PoiManager,
+        poiManager: PoisManager,
     ): NearbyPoisRepository {
-        return PoiRepository(
+        return PoisRepository(
             poiManager = poiManager,
         )
     }

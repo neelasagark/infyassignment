@@ -37,14 +37,4 @@ class VehiclePlatformTest {
         assertEquals(VehicleType.CAR, info.vehicleType)
         assertEquals(EngineType.ELECTRIC, info.engineType)
     }
-
-    @Test
-    fun observeCurrentNearbyPoiCategoryAlwaysEmitsUnknownForNow() = runTest {
-        val context: Context = mockk(relaxed = true)
-        val platform = VehiclePlatform(context)
-
-        val category = platform.observeCurrentNearbyPoiCategory().first()
-
-        assertEquals(PoiCategory.UNKNOWN, category)
-    }
 }

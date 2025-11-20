@@ -157,18 +157,6 @@ class VehiclePlatform(
         }.flowOn(Dispatchers.IO)
     }
 
-    /**
-     * A [Flow] of the current nearby POI category.
-     *
-     * For now this always emits [PoiCategory.UNKNOWN].
-     * A real implementation can be added later if needed.
-     */
-    override fun observeCurrentNearbyPoiCategory(): Flow<PoiCategory> {
-        return flow {
-            emit(PoiCategory.UNKNOWN)
-        }.flowOn(Dispatchers.IO)
-    }
-
     private fun createCarPropertyManager(): CarPropertyManager? {
         return try {
             val carInstance: Car = Car.createCar(context)

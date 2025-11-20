@@ -9,5 +9,6 @@ enum class PoiCategory {
     GAS_STATION,
     SUPERMARKET,
     PARKING,
+    ALL,
     UNKNOWN,
 }
